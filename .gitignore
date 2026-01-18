@@ -23,6 +23,7 @@ wandb/
 checkpoints/
 models/*.pt
 models/*.pth
+results/
 
 # Temporary files
 *.log

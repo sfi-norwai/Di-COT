@@ -64,7 +64,7 @@ ALGORITHM: DownstreamMLP
 ALGORITHM_ARGS:
   epochs: [0]
   supervised_epochs: [50]
-  iterations: [35000]
+  iterations: [1500]
   linear_epochs: [10]
   p_overlap: [0.5]
   n_split: [7]
