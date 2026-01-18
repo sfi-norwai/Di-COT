@@ -7,7 +7,7 @@ Learning Robust Temporal Features without Augmentation
 
 This repository contains the official Pytorch implementation of the "[**Divide and Contrast (Di-COT)**]", an unsupervised framework that avoids data augmentation and multiple encoder passes by contrasting informative substructures within a window rather than individual timesteps.
 
-![Di-COT](./visuals/DiCOT.svg?raw=true "Title")
+![Di-COT](./visuals/DiCOT.png?raw=true "Title")
 
 ## Data
 
