@@ -1,6 +1,8 @@
 <h1 align="center">Di-COT</h1>
-<h2 align="center">Divide and Contrast: \\
-    Learning Robust Temporal Features without Augmentation</h2>
+<h2 align="center">
+Divide and Contrast:<br>
+Learning Robust Temporal Features without Augmentation
+</h2>
 
 
 This repository contains the official Pytorch implementation of the "[**Divide and Contrast (Di-COT)**]", an unsupervised framework that avoids data augmentation and multiple encoder passes by contrasting informative substructures within a window rather than individual timesteps.
@@ -58,7 +60,7 @@ python pretrain.py TNC Skoda -p configs/Skodaconfig.yml -s 1 --evaluate supervis
 
 The figure below shows a t-SNE plot of the learned representation from all baselines on the Skoda dataset.
 
-![t-SNE Visualization](./visuals/tSNE_DiCOT.pdf?raw=true "Title")
+![t-SNE Visualization](./visuals/tSNE_DiCOT.svg?raw=true "Title")
 
 
 ## Acknowledgements
