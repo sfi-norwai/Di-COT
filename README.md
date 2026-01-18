@@ -21,7 +21,7 @@ For the Large benchmark datasets, we use the preprocessed dataset from the [**Se
 - [**ECG**](https://physionet.org/content/afdb/1.0.0/): We use the MIT-BIH Atrial Fibrillation dataset, which includes 25 long-term electrocardiogram (ECG) recordings of human subjects with atrial fibrillation, each with a duration of 10 hours.
 
 
-For the UCR and UEA benchmarks, you can download them from the [**official website**](https://www.timeseriesclassification.com/)
+For the UCR and UEA benchmarks, you can download them from the [**official website**](https://www.timeseriesclassification.com/).
 
 Make sure to place the dataset in the appropriate directory (e.g., `datasets/harth`) as specified in the configuration files.
 
