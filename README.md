@@ -5,7 +5,7 @@ Learning Robust Temporal Features without Augmentation
 </h2>
 
 <p align="center">
-  <a href="https://arxiv.org/pdf/2605.21241">
+  <a href="https://arxiv.org/abs/2605.21241">
     <img alt="arXiv" src="https://img.shields.io/badge/arXiv-2605.21241-b31b1b.svg">
   </a>
   <img alt="License" src="https://img.shields.io/github/license/sfi-norwai/Di-COT">
