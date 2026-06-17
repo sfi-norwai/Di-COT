@@ -3,11 +3,17 @@ from tqdm import tqdm
 from src.models.inceptiontime_pool import *
 from src.src_utils.utils import cosine_warmup_scheduler
 from src.models.resnet1D import *
+<<<<<<< HEAD
 from src.models.tcnencoder_pool import *
 from src.models.dilatedcnn_pool import *
 from pytorch_lightning.loggers import WandbLogger
 import wandb
 from models import TSEncoder
+=======
+from src.models.fcn import *
+from pytorch_lightning.loggers import WandbLogger
+import wandb
+>>>>>>> efa3f71 (Update code and graphics)
 import os
 import math
 import time
@@ -35,8 +41,12 @@ class Di_COT:
 
         self.net = InceptionTime(n_in_channels=args['feature_dim'], out_channels=args['out_features']).to(self.device)
         #self.net = ResNet1D(n_in_channels=args['feature_dim'], out_channels=args['out_features']).to(self.device)
+<<<<<<< HEAD
         #self.net = DilatedCNN(input_dims=args['feature_dim'], in_channels = 64, channels = [args['out_features']], kernel_size = 3).to(self.device)
 
+=======
+        #self.net = FCN(n_in_channels=args['feature_dim'], out_channels=args['out_features']).to(self.device)
+>>>>>>> efa3f71 (Update code and graphics)
 
         self.n_iters = 0
 
@@ -114,8 +124,14 @@ class Di_COT:
 
 
         #n = self.args['n_split']
+<<<<<<< HEAD
         p = self.args['p_overlap']
     
+=======
+        #p = self.args['p_overlap']
+        p = 0.5
+        k_max = 11
+>>>>>>> efa3f71 (Update code and graphics)
 
         if self.args['save_model']:
             run_dir = f'results/{ds_name}/seed_{self.config.SEED}/{name_with_datetime(self.__class__.__name__)}'
@@ -135,14 +151,22 @@ class Di_COT:
                 if n_iters is not None and self.n_iters >= n_iters:
                     interrupted = True
                     break
+<<<<<<< HEAD
                 
+=======
+
+>>>>>>> efa3f71 (Update code and graphics)
                 x = x.to(self.device)
 
                 batch, window, feat = x.shape
 
                 # theoretical subwindow length
+<<<<<<< HEAD
                 #n = np.random.choice([5, 7, 10])
                 n = np.random.randint(2, 11)
+=======
+                n = np.random.randint(2, k_max)
+>>>>>>> efa3f71 (Update code and graphics)
             
                 L = window / (1 + (n - 1) * (1 - p))
 
@@ -169,18 +193,30 @@ class Di_COT:
                 #z = self.projection_head(h)
                 #z = F.normalize(z, dim=-1)
 
+<<<<<<< HEAD
                 zs = z.view(batch, seq, -1)
 
                 temperature = 0.07
                 similarities = torch.einsum('bkd,bjd->bkj', zs, zs) / temperature # (B, pred_K, future_len)
 
                 positives = torch.arange(seq - 1, device=similarities.device)
+=======
+                zs = z.reshape(batch, seq, -1)
+                #temperature = self.args['temperature']
+                temperature = 0.07
+
+                similarities = torch.einsum('bkd,bjd->bkj', zs, zs) / temperature # (B, pred_K, future_len)
+
+                positives_prev = (torch.arange(seq, device=similarities.device) - 1).clamp(min=0)
+                #positives_next = (torch.arange(seq, device=similarities_next.device) + 1).clamp(max=seq-1)
+>>>>>>> efa3f71 (Update code and graphics)
 
                 #g = torch.Generator(device=similarities.device)
                 #g.manual_seed(42)
 
                 #positives = positives[torch.randperm(len(positives), generator=g, device=positives.device)]
 
+<<<<<<< HEAD
                 positives = torch.cat([torch.zeros(1, device=positives.device, dtype=positives.dtype), positives])
                 positives = positives.unsqueeze(0).repeat(batch, 1)
 
@@ -189,6 +225,23 @@ class Di_COT:
                 positives_flat = positives.reshape(batch * seq)            # (B*pred_K,)
 
                 loss = F.cross_entropy(similarities_flat, positives_flat)
+=======
+                positives_prev = positives_prev.unsqueeze(0).repeat(batch, 1)
+                #positives_next = positives_next.unsqueeze(0).repeat(batch, 1)
+
+                # Compute cross-entropy: flatten batch and pred dims into one dimension
+                similarities_flat = similarities.reshape(batch * seq, seq)   # (B*pred_K, future_len)
+
+                positives_flat_prev = positives_prev.reshape(batch * seq)            # (B*pred_K,)
+                #positives_flat_next = positives_next.reshape(batch * seq)            # (B*pred_K,)
+
+
+                loss_prev = F.cross_entropy(similarities_flat, positives_flat_prev)
+                #loss_next = F.cross_entropy(similarities_flat, positives_flat_next)
+
+                #loss = loss_prev + loss_next
+                loss = loss_prev
+>>>>>>> efa3f71 (Update code and graphics)
                 
                 # Backward pass and optimization
                 optimizer.zero_grad()
@@ -202,6 +255,17 @@ class Di_COT:
 
                 train_running_loss += loss.item()
 
+<<<<<<< HEAD
+=======
+                # Save model
+                #run_dir2 = f'results/{ds_name}/seed_{self.config.SEED}/'
+
+                #if self.n_iters%10==0:
+                #    model_path = os.path.join(run_dir2, f'model_{self.n_iters}.pt')
+                #    torch.save(self.net.state_dict(), model_path)
+
+
+>>>>>>> efa3f71 (Update code and graphics)
             scheduler.step()
             if interrupted:
                 break
