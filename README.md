@@ -108,12 +108,9 @@ Please check out the original repositories for more details.
 If you use **Di-COT** in your research, please consider citing it as follows:
 
 ```bibtex
-@misc{dicot2026,
-      title={Contrast All the Time: Learning Time Series Representation from Temporal Consistency}, 
-      author={Abdul-Kazeem Shamba and Kerstin Bach and Gavin Taylor},
-      year={2025},
-      eprint={2410.15416},
-      archivePrefix={arXiv},
-      primaryClass={cs.LG},
-      url={https://arxiv.org/abs/2410.15416}, 
+@inproceedings{dicot2026,
+  title     = {Divide and Contrast: Learning Robust Temporal Features without Augmentation},
+  author    = {Abdul-Kazeem Shamba and Kerstin Bach and Gavin Taylor},
+  booktitle = {Proceedings of the 43rd International Conference on Machine Learning},
+  year      = {2026}
 }
